@@ -15,17 +15,12 @@ import {
   StatusBar,
   StyleSheet,
   Text,
+  TextInput,
   useColorScheme,
   View,
 } from 'react-native';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import {Colors, Header} from 'react-native/Libraries/NewAppScreen';
 
 const Section: React.FC<{
   title: string;
@@ -62,6 +57,16 @@ const App = () => {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
+  const [text1, onChangeText1] = React.useState('Text Field 1');
+  const [text2, onChangeText2] = React.useState('Text Field 2');
+  const [text3, onChangeText3] = React.useState('Text Field 3');
+
+  // To resolve 'Object is possibly 'undefined'.ts(2532)', I applied this (null!) solution
+  // from https://react-typescript-cheatsheet.netlify.app/docs/basic/getting-started/hooks/#useref
+  const refInput1 = React.useRef<TextInput>(null!);
+  const refInput2 = React.useRef<TextInput>(null!);
+  const refInput3 = React.useRef<TextInput>(null!);
+
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
@@ -73,20 +78,34 @@ const App = () => {
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
+          <Section title="Next key test">
+            Use the Next key to move thru these three fields
           </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
+          <TextInput
+            style={styles.input}
+            autoFocus={true}
+            returnKeyType="next"
+            onSubmitEditing={() => refInput2.current.focus()}
+            ref={refInput1}
+            onChangeText={onChangeText1}
+            value={text1}
+          />
+          <TextInput
+            style={styles.input}
+            returnKeyType="next"
+            onSubmitEditing={() => refInput3.current.focus()}
+            ref={refInput2}
+            onChangeText={onChangeText2}
+            value={text2}
+          />
+          <TextInput
+            style={styles.input}
+            returnKeyType="next"
+            onSubmitEditing={() => refInput1.current.focus()}
+            ref={refInput3}
+            onChangeText={onChangeText3}
+            value={text3}
+          />
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -109,6 +128,12 @@ const styles = StyleSheet.create({
   },
   highlight: {
     fontWeight: '700',
+  },
+  input: {
+    height: 40,
+    margin: 12,
+    borderWidth: 1,
+    padding: 10,
   },
 });
 
