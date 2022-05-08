@@ -8,6 +8,7 @@
  * @format
  */
 
+import {Icon} from '@rneui/themed';
 import React from 'react';
 import {
   SafeAreaView,
@@ -21,6 +22,7 @@ import {
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 import {Colors, Header} from 'react-native/Libraries/NewAppScreen';
+import {MyTextInput} from './MyTextInput';
 
 const Section: React.FC<{
   title: string;
@@ -81,31 +83,32 @@ const App = () => {
           <Section title="Next key test">
             Use the Next key to move thru these three fields
           </Section>
-          <TextInput
-            style={styles.input}
-            autoFocus={true}
-            returnKeyType="next"
-            onSubmitEditing={() => refInput2.current.focus()}
-            ref={refInput1}
-            onChangeText={onChangeText1}
-            value={text1}
-          />
-          <TextInput
-            style={styles.input}
-            returnKeyType="next"
-            onSubmitEditing={() => refInput3.current.focus()}
-            ref={refInput2}
-            onChangeText={onChangeText2}
-            value={text2}
-          />
-          <TextInput
-            style={styles.input}
-            returnKeyType="next"
-            onSubmitEditing={() => refInput1.current.focus()}
-            ref={refInput3}
-            onChangeText={onChangeText3}
-            value={text3}
-          />
+          <View style={styles.inputWrapper}>
+            <MyTextInput
+              containerStyle={styles.input}
+              ref={refInput1}
+              nextRef={refInput2}
+              onChangeText={onChangeText1}
+              value={text1}
+              rightIcon={<Icon name="backup" />}
+            />
+            <MyTextInput
+              containerStyle={styles.input}
+              ref={refInput2}
+              nextRef={refInput3}
+              onChangeText={onChangeText2}
+              value={text2}
+              rightIcon={<Icon name="build" />}
+            />
+            <MyTextInput
+              containerStyle={styles.input}
+              ref={refInput3}
+              nextRef={refInput1}
+              onChangeText={onChangeText3}
+              value={text3}
+              rightIcon={<Icon name="alarm" />}
+            />
+          </View>
         </View>
       </KeyboardAwareScrollView>
     </SafeAreaView>
@@ -129,11 +132,13 @@ const styles = StyleSheet.create({
   highlight: {
     fontWeight: '700',
   },
+  inputWrapper: {
+    marginRight: 20,
+  },
   input: {
-    height: 40,
+    height: 60,
     margin: 12,
-    borderWidth: 1,
-    padding: 10,
+    marginRight: 10,
   },
 });
 
