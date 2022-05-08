@@ -8,7 +8,7 @@
  * @format
  */
 
-import React from 'react';
+import React, {useCallback} from 'react';
 import {
   SafeAreaView,
   StatusBar,
@@ -21,6 +21,7 @@ import {
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 import {Colors, Header} from 'react-native/Libraries/NewAppScreen';
+import {MyTextInput} from './MyTextInput';
 
 const Section: React.FC<{
   title: string;
@@ -67,6 +68,19 @@ const App = () => {
   const refInput2 = React.useRef<TextInput>(null!);
   const refInput3 = React.useRef<TextInput>(null!);
 
+  const focusNextRef1 = useCallback(
+    () => refInput1.current?.focus(),
+    [refInput1],
+  );
+  const focusNextRef2 = useCallback(
+    () => refInput2.current?.focus(),
+    [refInput2],
+  );
+  const focusNextRef3 = useCallback(
+    () => refInput3.current?.focus(),
+    [refInput3],
+  );
+
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
@@ -81,31 +95,33 @@ const App = () => {
           <Section title="Next key test">
             Use the Next key to move thru these three fields
           </Section>
-          <TextInput
-            style={styles.input}
-            autoFocus={true}
-            returnKeyType="next"
-            onSubmitEditing={() => refInput2.current.focus()}
-            ref={refInput1}
-            onChangeText={onChangeText1}
-            value={text1}
-          />
-          <TextInput
-            style={styles.input}
-            returnKeyType="next"
-            onSubmitEditing={() => refInput3.current.focus()}
-            ref={refInput2}
-            onChangeText={onChangeText2}
-            value={text2}
-          />
-          <TextInput
-            style={styles.input}
-            returnKeyType="next"
-            onSubmitEditing={() => refInput1.current.focus()}
-            ref={refInput3}
-            onChangeText={onChangeText3}
-            value={text3}
-          />
+          <View style={styles.inputWrapper}>
+            <MyTextInput
+              containerStyle={styles.input}
+              autoFocus={true}
+              returnKeyType="next"
+              onSubmitEditing={focusNextRef2}
+              ref={refInput1}
+              onChangeText={onChangeText1}
+              value={text1}
+            />
+            <MyTextInput
+              containerStyle={styles.input}
+              returnKeyType="next"
+              onSubmitEditing={focusNextRef3}
+              ref={refInput2}
+              onChangeText={onChangeText2}
+              value={text2}
+            />
+            <MyTextInput
+              containerStyle={styles.input}
+              returnKeyType="next"
+              onSubmitEditing={focusNextRef1}
+              ref={refInput3}
+              onChangeText={onChangeText3}
+              value={text3}
+            />
+          </View>
         </View>
       </KeyboardAwareScrollView>
     </SafeAreaView>
@@ -129,11 +145,13 @@ const styles = StyleSheet.create({
   highlight: {
     fontWeight: '700',
   },
+  inputWrapper: {
+    marginRight: 20,
+  },
   input: {
-    height: 40,
+    height: 60,
     margin: 12,
-    borderWidth: 1,
-    padding: 10,
+    marginRight: 10,
   },
 });
 
