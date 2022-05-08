@@ -8,7 +8,7 @@
  * @format
  */
 
-import React, {useCallback} from 'react';
+import React from 'react';
 import {
   SafeAreaView,
   StatusBar,
@@ -68,19 +68,6 @@ const App = () => {
   const refInput2 = React.useRef<TextInput>(null!);
   const refInput3 = React.useRef<TextInput>(null!);
 
-  const focusNextRef1 = useCallback(
-    () => refInput1.current?.focus(),
-    [refInput1],
-  );
-  const focusNextRef2 = useCallback(
-    () => refInput2.current?.focus(),
-    [refInput2],
-  );
-  const focusNextRef3 = useCallback(
-    () => refInput3.current?.focus(),
-    [refInput3],
-  );
-
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
@@ -98,26 +85,22 @@ const App = () => {
           <View style={styles.inputWrapper}>
             <MyTextInput
               containerStyle={styles.input}
-              autoFocus={true}
-              returnKeyType="next"
-              onSubmitEditing={focusNextRef2}
               ref={refInput1}
+              nextRef={refInput2}
               onChangeText={onChangeText1}
               value={text1}
             />
             <MyTextInput
               containerStyle={styles.input}
-              returnKeyType="next"
-              onSubmitEditing={focusNextRef3}
               ref={refInput2}
+              nextRef={refInput3}
               onChangeText={onChangeText2}
               value={text2}
             />
             <MyTextInput
               containerStyle={styles.input}
-              returnKeyType="next"
-              onSubmitEditing={focusNextRef1}
               ref={refInput3}
+              nextRef={refInput1}
               onChangeText={onChangeText3}
               value={text3}
             />
