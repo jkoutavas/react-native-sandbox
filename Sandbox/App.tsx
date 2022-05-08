@@ -8,6 +8,7 @@
  * @format
  */
 
+import {Icon} from '@rneui/themed';
 import React from 'react';
 import {
   SafeAreaView,
@@ -89,6 +90,7 @@ const App = () => {
               nextRef={refInput2}
               onChangeText={onChangeText1}
               value={text1}
+              rightIcon={<Icon name="backup" />}
             />
             <MyTextInput
               containerStyle={styles.input}
@@ -96,6 +98,7 @@ const App = () => {
               nextRef={refInput3}
               onChangeText={onChangeText2}
               value={text2}
+              rightIcon={<Icon name="build" />}
             />
             <MyTextInput
               containerStyle={styles.input}
@@ -103,6 +106,7 @@ const App = () => {
               nextRef={refInput1}
               onChangeText={onChangeText3}
               value={text3}
+              rightIcon={<Icon name="alarm" />}
             />
           </View>
         </View>
