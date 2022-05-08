@@ -18,4 +18,4 @@ I wanted to sort-out some tsc compile errors dealing with component refs I was s
 
 ### May 8th, 2022
 
-I successfully incorporated wrapping React-Native-Elements' Input component with "MyTextInput" allowing me to explore how React.refForwarding works as well as adding some non sequitur rightIcon examples.
+I successfully incorporated wrapping React-Native-Elements' Input component with "MyTextInput" allowing me to explore how React.refForwarding works as well as adding some non sequitur rightIcon examples. You can see a screen shot of this in [PR #1's description](https://github.com/jkoutavas/react-native-sandbox/pull/1).
