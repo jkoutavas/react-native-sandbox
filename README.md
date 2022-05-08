@@ -14,7 +14,7 @@ npx react-native init Sandbox --template react-native-template-typescript
 
 ### May 7th, 2022
 
-I wanted to sort-out some tsc compile errors dealing with component refs I was seeing on another app I was working on. Specifically, I worked-out here resolving 'Object is possibly 'undefined'.ts(2532)', I applied this (null!) solution from https://react-typescript-cheatsheet.netlify.app/docs/basic/getting-started/hooks/#useref. Seems to be working pretty good.
+I wanted to sort-out some tsc compile errors dealing with component refs I was seeing on another app I was working on. Specifically, I worked-out here resolving `Object is possibly 'undefined'.ts(2532)`, I applied this (null!) solution from https://react-typescript-cheatsheet.netlify.app/docs/basic/getting-started/hooks/#useref. Seems to be working pretty good.
 
 ### May 8th, 2022
 
