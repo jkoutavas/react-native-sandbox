@@ -23,3 +23,5 @@ I successfully incorporated wrapping React-Native-Elements' Input component with
 ### April 22nd, 2023
 
 I updated the app to React Native v0.71.7 and to React Native Element v4.0.0-rc.7
+
+I added support for handling background and foreground Google Firebase Cloud Messages on the Android app. You'll note that the `google-services.json` file for this repo has been added to `.gitignore`. There's quite a back and forth discussion about if this file should be committed to public git repos. I chose the safe path.

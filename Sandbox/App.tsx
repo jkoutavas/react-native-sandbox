@@ -9,8 +9,9 @@
  */
 
 import {Icon} from '@rneui/themed';
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
+  Alert,
   SafeAreaView,
   StatusBar,
   StyleSheet,
@@ -23,6 +24,24 @@ import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 import {Colors, Header} from 'react-native/Libraries/NewAppScreen';
 import {MyTextInput} from './MyTextInput';
+
+import {PermissionsAndroid} from 'react-native';
+PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS);
+// Register background handler
+messaging().setBackgroundMessageHandler(async remoteMessage => {
+  console.log(`Message handled in the background! ${JSON.stringify(remoteMessage)}`);
+});
+
+import messaging from '@react-native-firebase/messaging';
+
+const checkToken = async () => {
+ const fcmToken = await messaging().getToken();
+ if (fcmToken) {
+    console.log(`FCM token: ${fcmToken}`);
+ } 
+}
+
+checkToken();
 
 const Section: React.FC<{
   title: string;
@@ -53,6 +72,14 @@ const Section: React.FC<{
 };
 
 const App = () => {
+  useEffect(() => {
+    const unsubscribe = messaging().onMessage(async remoteMessage => {
+      Alert.alert('A new FCM message arrived!', JSON.stringify(remoteMessage));
+    });
+
+    return unsubscribe;
+  }, []);
+  
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
