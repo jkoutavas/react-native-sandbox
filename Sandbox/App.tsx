@@ -9,7 +9,7 @@
  */
 
 import {Icon} from '@rneui/themed';
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
 import {
   Alert,
   SafeAreaView,
@@ -29,17 +29,19 @@ import {PermissionsAndroid} from 'react-native';
 PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS);
 // Register background handler
 messaging().setBackgroundMessageHandler(async remoteMessage => {
-  console.log(`Message handled in the background! ${JSON.stringify(remoteMessage)}`);
+  console.log(
+    `Message handled in the background! ${JSON.stringify(remoteMessage)}`,
+  );
 });
 
 import messaging from '@react-native-firebase/messaging';
 
 const checkToken = async () => {
- const fcmToken = await messaging().getToken();
- if (fcmToken) {
+  const fcmToken = await messaging().getToken();
+  if (fcmToken) {
     console.log(`FCM token: ${fcmToken}`);
- } 
-}
+  }
+};
 
 checkToken();
 
@@ -79,7 +81,7 @@ const App = () => {
 
     return unsubscribe;
   }, []);
-  
+
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
