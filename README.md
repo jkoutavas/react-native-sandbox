@@ -1,6 +1,6 @@
 # react-native-sandbox
 
-_README last updated April 22nd, 2023_
+_README last updated May 1st, 2023_
 
 A place to try-out React Native ideas.
 
@@ -20,8 +20,8 @@ I wanted to sort-out some tsc compile errors dealing with component refs I was s
 
 I successfully incorporated wrapping React-Native-Elements' Input component with "MyTextInput" allowing me to explore how React.refForwarding works as well as adding some non sequitur rightIcon examples. You can see a screen shot of this in [PR #1's description](https://github.com/jkoutavas/react-native-sandbox/pull/1).
 
-### April 22nd, 2023
+### May 1st, 2023
 
 I updated the app to React Native v0.71.7 and to React Native Element v4.0.0-rc.7
 
-I added support for handling background and foreground Google Firebase Cloud Messages on the Android app. You'll note that the `google-services.json` file for this repo has been added to `.gitignore`. There's quite a back and forth discussion about if this file should be committed to public git repos. I chose the safe path.
+I added support for handling background and foreground Google Firebase Cloud Messages. You'll note that the `google-services.json` and `GoogleService-Info.plist` files for this repo have been added to `.gitignore`. There's quite a back and forth discussion about if these files should be committed to public git repos. I chose the safe path.
