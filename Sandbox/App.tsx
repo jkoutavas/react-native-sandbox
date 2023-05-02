@@ -9,9 +9,8 @@
  */
 
 import {Icon} from '@rneui/themed';
-import React, {useEffect} from 'react';
+import React from 'react';
 import {
-  Alert,
   SafeAreaView,
   StatusBar,
   StyleSheet,
@@ -24,30 +23,13 @@ import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 import {Colors, Header} from 'react-native/Libraries/NewAppScreen';
 import {MyTextInput} from './MyTextInput';
-
-import {PermissionsAndroid} from 'react-native';
-PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS);
-// Register background handler
-messaging().setBackgroundMessageHandler(async remoteMessage => {
-  console.log(
-    `Message handled in the background! ${JSON.stringify(remoteMessage)}`,
-  );
-});
-
-import messaging from '@react-native-firebase/messaging';
-
-const checkToken = async () => {
-  const fcmToken = await messaging().getToken();
-  if (fcmToken) {
-    console.log(`FCM token: ${fcmToken}`);
-  }
-};
-
-checkToken();
+import { NotificationsManager } from './NotificationsManager';
 
 const Section: React.FC<{
   title: string;
+  children?: React.ReactNode
 }> = ({children, title}) => {
+
   const isDarkMode = useColorScheme() === 'dark';
   return (
     <View style={styles.sectionContainer}>
@@ -74,13 +56,6 @@ const Section: React.FC<{
 };
 
 const App = () => {
-  useEffect(() => {
-    const unsubscribe = messaging().onMessage(async remoteMessage => {
-      Alert.alert('A new FCM message arrived!', JSON.stringify(remoteMessage));
-    });
-
-    return unsubscribe;
-  }, []);
 
   const isDarkMode = useColorScheme() === 'dark';
 
@@ -99,48 +74,51 @@ const App = () => {
   const refInput3 = React.useRef<TextInput>(null!);
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <KeyboardAwareScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Next key test">
-            Use the Next key to move thru these three fields
-          </Section>
-          <View style={styles.inputWrapper}>
-            <MyTextInput
-              containerStyle={styles.input}
-              ref={refInput1}
-              nextRef={refInput2}
-              onChangeText={onChangeText1}
-              value={text1}
-              rightIcon={<Icon name="backup" />}
-            />
-            <MyTextInput
-              containerStyle={styles.input}
-              ref={refInput2}
-              nextRef={refInput3}
-              onChangeText={onChangeText2}
-              value={text2}
-              rightIcon={<Icon name="build" />}
-            />
-            <MyTextInput
-              containerStyle={styles.input}
-              ref={refInput3}
-              nextRef={refInput1}
-              onChangeText={onChangeText3}
-              value={text3}
-              rightIcon={<Icon name="alarm" />}
-            />
+
+      <SafeAreaView style={backgroundStyle}>
+        <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+        <NotificationsManager/>
+        <KeyboardAwareScrollView
+          contentInsetAdjustmentBehavior="automatic"
+          style={backgroundStyle}>
+          <Header />
+          <View
+            style={{
+              backgroundColor: isDarkMode ? Colors.black : Colors.white,
+            }}>
+            <Section title="Next key test">
+              Use the Next key to move thru these three fields
+            </Section>
+            <View style={styles.inputWrapper}>
+              <MyTextInput
+                containerStyle={styles.input}
+                ref={refInput1}
+                nextRef={refInput2}
+                onChangeText={onChangeText1}
+                value={text1}
+                rightIcon={<Icon name="backup" />}
+              />
+              <MyTextInput
+                containerStyle={styles.input}
+                ref={refInput2}
+                nextRef={refInput3}
+                onChangeText={onChangeText2}
+                value={text2}
+                rightIcon={<Icon name="build" />}
+              />
+              <MyTextInput
+                containerStyle={styles.input}
+                ref={refInput3}
+                nextRef={refInput1}
+                onChangeText={onChangeText3}
+                value={text3}
+                rightIcon={<Icon name="alarm" />}
+              />
+            </View>
           </View>
-        </View>
-      </KeyboardAwareScrollView>
-    </SafeAreaView>
+        </KeyboardAwareScrollView>
+      </SafeAreaView>
+
   );
 };
 
