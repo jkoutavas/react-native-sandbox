@@ -1,5 +1,5 @@
 import React, {useCallback} from 'react';
-import {StyleSheet, TextInput, View, ViewStyle} from 'react-native';
+import {NativeSyntheticEvent, StyleSheet, TextInput, TextInputSubmitEditingEventData, View, ViewStyle} from 'react-native';
 import {Input, InputProps} from '@rneui/themed';
 
 export type FocusRef = React.MutableRefObject<TextInput>;
@@ -14,8 +14,8 @@ export const MyTextInput = React.forwardRef<TextInput, MyTextInputProps>(
       () => props.nextRef?.current && props.nextRef.current.focus(),
       [props.nextRef],
     );
-    const submitEditing = useCallback(
-      e => {
+    const submitEditing = useCallback((
+      e: NativeSyntheticEvent<TextInputSubmitEditingEventData>) => {
         if (props.onSubmitEditing !== undefined) {
           props.onSubmitEditing(e);
         }
