@@ -13,7 +13,7 @@
   // They will be passed down to the ViewController used by React Native.
   self.initialProps = @{};
 
-  [FIRApp configure];
+  //[FIRApp configure];
   
   return [super application:application didFinishLaunchingWithOptions:launchOptions];
 }
