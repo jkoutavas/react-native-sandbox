@@ -28,4 +28,6 @@ I added support for handling background and foreground Google Firebase Cloud Mes
 
 ### July 3rd, 2024
 
-I updated the app to React Native v0.72.10
+I updated the app to React Native v0.72.10.
+
+I added an example of using [reassure](https://github.com/callstack/reassure) to test component performance.

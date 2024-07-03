@@ -65,5 +65,13 @@ yarn-error.log
 # testing
 /coverage
 
+# Jest
+#
+.jest/
+__snapshots__
+
+# Reassure output directory
+.reassure 
+
 **/google-services.json
 **/GoogleService-Info.plist

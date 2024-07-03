@@ -7,7 +7,8 @@
     "ios": "react-native run-ios",
     "lint": "eslint .",
     "start": "react-native start",
-    "test": "jest"
+    "test": "jest",
+    "perf-test": "reassure"
   },
   "dependencies": {
     "@react-native-firebase/app": "^17.4.2",
@@ -26,6 +27,7 @@
     "@babel/runtime": "^7.22.5",
     "@react-native/eslint-config": "^0.72.2",
     "@react-native/metro-config": "^0.72.11",
+    "@testing-library/react-native": "^12.5.1",
     "@tsconfig/react-native": "^3.0.0",
     "@types/jest": "^29.2.1",
     "@types/react": "^18.2.13",
@@ -36,6 +38,8 @@
     "metro-react-native-babel-preset": "0.76.8",
     "prettier": "^2.8.8",
     "react-test-renderer": "18.2.0",
+    "reassure": "^1.0.0",
+    "ts-jest": "^29.1.5",
     "typescript": "^4.9.3"
   },
   "engines": {
