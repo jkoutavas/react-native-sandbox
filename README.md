@@ -35,3 +35,5 @@ I added an example of using [reassure](https://github.com/callstack/reassure) to
 ### September 14th, 2024
 
 I updated the app to React Native v0.75.3.
+
+I added react-native-dev-settings support (required to integrate with React Native Debugger)
