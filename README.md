@@ -1,6 +1,6 @@
 # react-native-sandbox
 
-_README last updated July 3rd, 2024_
+_README last updated September 14th, 2024_
 
 A place to try-out React Native ideas.
 
@@ -31,3 +31,7 @@ I added support for handling background and foreground Google Firebase Cloud Mes
 I updated the app to React Native v0.72.10.
 
 I added an example of using [reassure](https://github.com/callstack/reassure) to test component performance.
+
+### September 14th, 2024
+
+I updated the app to React Native v0.75.3.
