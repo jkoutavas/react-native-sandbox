@@ -21,6 +21,9 @@ import {
 } from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
+// see: https://github.com/gusgard/react-native-devsettings
+import 'react-native-devsettings';
+
 import {Colors, Header} from 'react-native/Libraries/NewAppScreen';
 import {MyTextInput} from './MyTextInput';
 import {NotificationsManager} from './NotificationsManager';
