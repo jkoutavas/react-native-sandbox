@@ -37,3 +37,7 @@ I added an example of using [reassure](https://github.com/callstack/reassure) to
 I updated the app to React Native v0.75.3.
 
 I added react-native-dev-settings support (required to integrate with React Native Debugger)
+
+### September 16th, 2024
+
+I added the "RNTimeZoneModule" to fetch IANA timezone names natively from iOS and Android
