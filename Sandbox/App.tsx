@@ -9,7 +9,7 @@
  */
 
 import {Icon} from '@rneui/themed';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   SafeAreaView,
   StatusBar,
@@ -27,6 +27,7 @@ import 'react-native-devsettings';
 import {Colors, Header} from 'react-native/Libraries/NewAppScreen';
 import {MyTextInput} from './MyTextInput';
 import {NotificationsManager} from './NotificationsManager';
+import getTimeZone from './TimeZoneModule';
 
 const Section: React.FC<{
   title: string;
@@ -59,6 +60,7 @@ const Section: React.FC<{
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
+  const [timeZone, setTimeZone] = useState('');
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
@@ -74,6 +76,14 @@ const App = () => {
   const refInput2 = React.useRef<TextInput>(null!);
   const refInput3 = React.useRef<TextInput>(null!);
 
+  useEffect(() => {
+    const fetchTimeZone = async () => {
+      const tz = await getTimeZone();
+      setTimeZone(tz);
+    };
+    fetchTimeZone();
+  }, []);
+
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
@@ -86,6 +96,11 @@ const App = () => {
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
+          <Text
+            style={
+              styles.timezone
+            }>{`IANA timezone string: "${timeZone}"`}</Text>
+
           <Section title="Next key test">
             Use the Next key to move thru these three fields
           </Section>
@@ -137,6 +152,11 @@ const styles = StyleSheet.create({
   },
   highlight: {
     fontWeight: '700',
+  },
+  timezone: {
+    fontWeight: 'bold',
+    marginTop: 8,
+    marginLeft: 8,
   },
   inputWrapper: {
     marginRight: 20,
