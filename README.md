@@ -1,6 +1,6 @@
 # react-native-sandbox
 
-_README last updated September 14th, 2024_
+_README last updated September 1th, 2024_
 
 A place to try-out React Native ideas.
 
